@@ -1,15 +1,21 @@
 import requests
-
+import os
 from datetime import datetime
+from dotenv import load_dotenv
 
-PIXELA_ENDPOINT = "https://pixe.la/v1/users"
+load_dotenv('.env')
+PW = os.getenv("PW")
 USERNAME = "notchamath"
 
-GRAPH_ENDPOINT = f"{PIXELA_ENDPOINT}/{USERNAME}/graphs"
 graph_id = "readingtracker"
 headers = {
     "X-USER-TOKEN": PW,
 }
+
+PIXELA_ENDPOINT = "https://pixe.la/v1/users"
+GRAPH_ENDPOINT = f"{PIXELA_ENDPOINT}/{USERNAME}/graphs"
+PIXEL_ENDPOINT = f"{GRAPH_ENDPOINT}/{graph_id}"
+
 
 
 # ************************* Create User ****************************
@@ -39,7 +45,6 @@ headers = {
 
 
 # ************************* Add Pixels to Graph ****************************
-PIXEL_ENDPOINT = f"{GRAPH_ENDPOINT}/{graph_id}"
 
 today = datetime.now()
 
